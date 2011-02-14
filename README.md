@@ -1,8 +1,15 @@
 Provides a simple but powerful contact form built onto the Observer Pattern.
 Plug any listener you want to your contact form's submission
 
-# Features
+# Todo
 
+ * Add mongodb configuration files
+ * Add unit tests
+ * Comment methods and attributes
+
+(Quite the same as for GithubBundle, we are sorry for that methodology but we'll correct that soon).
+
+# Features
 
 - Compatible with Doctrine ORM **and** ODM thanks to a generic repository.
 - Model is extensible at will
