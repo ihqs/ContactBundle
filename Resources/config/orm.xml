@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="ihqs_contact.model.contact.class">Bundle\IHQS\ContactBundle\Entity\Contact</parameter>
+        <parameter key="ihqs_contact.manager.contact.class">Bundle\IHQS\ContactBundle\Entity\ContactManager</parameter>
+    </parameters>
+
+    <services>
+        <!-- Entity manager -->
+        <service id="ihqs_contact.model_manager" alias="doctrine.orm.default_entity_manager" />
+
+        <!-- Managers -->
+        <service id="ihqs_contact.manager.contact" class="%ihqs_contact.manager.contact.class%">
+            <argument type="service" id="ihqs_contact.model_manager" />
+            <argument>%ihqs_contact.model.contact.class%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+    </services>
+
+</container>

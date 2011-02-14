@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Bundle\IHQS\ContactBundle\Entity\Contact" table="ihqs_contact">
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="incrementCreatedAt" />
+        </lifecycle-callbacks>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="senderEmail" column="sender_email" type="string" length="255" />
+
+        <field name="senderName" column="sender_name" type="string" length="255" />
+
+        <field name="subject" column="subject" type="string" length="255" />
+
+        <field name="message" column="message" type="string" length="255"  />
+
+        <field name="createdAt" column="createAt" type="datetime" />
+
+    </entity>
+
+</doctrine-mapping>

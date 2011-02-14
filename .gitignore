@@ -1,0 +1,13 @@
+# netbeans
+nbproject/
+
+# eclipse
+.project
+.settings
+.buildpath
+
+# vim ctags
+tags
+
+# mac
+.DS_Store
