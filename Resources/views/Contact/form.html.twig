@@ -6,9 +6,9 @@
         {% for field in form %}
             {% if not field.ishidden %}
             <div>
-                {{ form_errors(field) }}
                 {{ form_label(field) }}
                 {{ form_field(field) }}
+                {{ form_errors(field) }}
             </div>
             {% endif %}
         {% endfor %}
