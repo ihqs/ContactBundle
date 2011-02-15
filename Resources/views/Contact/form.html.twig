@@ -1,29 +1,21 @@
-{% block errors %}
-{% spaceless %}
-    {% if field.hasErrors %}
-    <ul>
-        {% for error in field.errors %}
-            <li>klmklmkmlkml{{ error.messageTemplate }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-{% endspaceless %}
-{% endblock errors %}
-
 <form class="contact-form" action="" {{ form_enctype(form) }} method="post">
     {{ form_errors(form) }}
 
-    <h1>{{ message }}</h1>
-    {% for field in form %}
-        {% if not field.ishidden %}
-        <div>
-            {{ form_errors(field) }}
-            {{ form_label(field) }}
-            {{ form_field(field) }}
-        </div>
-        {% endif %}
-    {% endfor %}
+    <fieldset>
+        <legend>{% trans "Contact form" %} {{ message }}</legend>
+        {% for field in form %}
+            {% if not field.ishidden %}
+            <div>
+                {{ form_errors(field) }}
+                {{ form_label(field) }}
+                {{ form_field(field) }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </fieldset>
 
-    {{ form_hidden(form) }}
-    <input type="submit" class="submit" value="{% trans "Submit contact form" %}" />
+    <fieldset>
+        {{ form_hidden(form) }}
+        <input type="submit" class="submit" value="{% trans "Submit contact form" %}" />
+    </fieldset>
 </form>
