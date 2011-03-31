@@ -94,28 +94,4 @@ class IHQSContactExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
         $loader->load(sprintf('%s.xml', $config['db_driver']));
     }
-
-    /**
-     * @see Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
-    }
-
-    /**
-     * @see Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    public function getNamespace()
-    {
-        return 'http://www.symfony-project.org/shemas/dic/symfony';
-    }
-
-    /**
-     * @see Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    public function getAlias()
-    {
-        return 'ihqs_contact';
-    }
 }
