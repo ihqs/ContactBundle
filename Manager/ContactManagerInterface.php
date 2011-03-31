@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bundle\IHQS\ContactBundle\Manager;
+namespace IHQS\ContactBundle\Manager;
 
 interface ContactManagerInterface
 {

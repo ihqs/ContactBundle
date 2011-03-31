@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bundle\IHQS\ContactBundle\Controller;
+namespace IHQS\ContactBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;

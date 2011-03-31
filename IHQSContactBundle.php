@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bundle\IHQS\ContactBundle;
+namespace IHQS\ContactBundle;
 
 use Bundle\IHQS\ContactBundle\DependencyInjection\Compiler\ConnectorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

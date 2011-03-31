@@ -1,5 +1,5 @@
 <?php
-namespace Bundle\IHQS\ContactBundle\DependencyInjection\Compiler;
+namespace IHQS\ContactBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

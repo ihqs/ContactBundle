@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\IHQS\ContactBundle\Entity;
+namespace IHQS\ContactBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Bundle\IHQS\ContactBundle\Manager\ContactManager as BaseContactManager;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\IHQS\ContactBundle\Entity;
+namespace IHQS\ContactBundle\Entity;
 
 use Bundle\IHQS\ContactBundle\Model\Contact as BaseContact;
 

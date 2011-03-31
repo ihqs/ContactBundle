@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Bundle\IHQS\ContactBundle\Connector;
+namespace IHQS\ContactBundle\Connector;
 
 use Bundle\IHQS\ContactBundle\Model\ContactInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
