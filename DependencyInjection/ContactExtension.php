@@ -9,7 +9,7 @@
 
 namespace Bundle\IHQS\ContactBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\FileLocator;
@@ -17,14 +17,14 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ContactExtension extends Extension
 {
-    public function configLoad(array $config, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
         $loader->load('form.xml');
         $loader->load('connector.xml');
         $loader->load('model.xml');
 
-        foreach($config as $config_unit)
+        foreach($configs as $config_unit)
         {
             $this->doConfigLoad($config_unit, $container);
         }
