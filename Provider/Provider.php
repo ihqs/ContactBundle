@@ -1,32 +1,38 @@
 <?php
 
-namespace Knplabs\MenuBundle\Provider;
+namespace IHQS\ContactBundle\Provider;
 
-use Knplabs\MenuBundle\ProviderInterface;
+use IHQS\ContactBundle\ProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LazyProvider implements ProviderInterface
+class Provider
 {
     protected $container;
 
-    protected $menuServiceIds = array();
-
-    public function addMenuServiceId($name, $serviceId)
-    {
-        $this->menuServiceIds[$name] = $serviceId;
-    }
+    protected $connectorServiceIds = array();
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
-    public function getMenu($name)
+    public function addConnectorServiceId($name, $serviceId)
     {
-        if (!isset($this->menuServiceIds[$name])) {
-            throw new \InvalidArgumentException(sprintf('The menu "%s" is not defined.', $name));
+        $this->connectorServiceIds[$name] = $serviceId;
+    }
+
+    public function getConnector($name)
+    {
+        if (!isset($this->connectorServiceIds[$name]))
+        {
+            throw new \InvalidArgumentException(sprintf('The contact connector "%s" is not defined.', $name));
         }
 
-        return $this->container->get($this->menuServiceIds[$name]);
+        return $this->container->get($this->connectorServiceIds[$name]);
+    }
+
+    public function getConnectors($name)
+    {
+        return $this->connectorServiceIds;
     }
 }

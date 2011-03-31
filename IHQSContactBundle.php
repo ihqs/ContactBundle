@@ -23,7 +23,7 @@ class IHQSContactBundle extends BaseBundle
 
     public function boot()
     {
-        $connectors = $this->container->getParameter('ihqs_contact.connectors');
+        $connectors = $this->container->get('ihqs_contact.provider')->getConnectors();
         foreach($connectors as $connectorService)
         {
             $connector = $this->container->get($connectorService);
