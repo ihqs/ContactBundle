@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\FileLocator;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class ContactExtension extends Extension
+class IHQSContactExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
