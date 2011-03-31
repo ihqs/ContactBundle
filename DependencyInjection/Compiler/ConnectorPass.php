@@ -8,16 +8,17 @@ class ConnectorPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $connectors = array();
+        if (!$container->hasDefinition('ihqs_contact.provider')) {
+            return;
+        }
+        $definition = $container->getDefinition('ihqs_contact.provider');
 
-        foreach ($container->findTaggedServiceIds('ihqs_contact.connector') as $id => $attributes)
-        {
+        $menus = array();
+        foreach ($container->findTaggedServiceIds('ihqs_contact.connector') as $id => $attributes) {
             if (isset($attributes[0]['alias']))
             {
-                $connectors[$attributes[0]['alias']] = $id;
+                $definition->addMethodCall('addConnectorServiceId', array($attributes[0]['alias'], $id));
             }
         }
-        
-        $container->setParameter('ihqs_contact.connectors', $connectors);
     }
 }

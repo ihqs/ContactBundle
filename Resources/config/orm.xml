@@ -5,8 +5,8 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="ihqs_contact.model.contact.class">Bundle\IHQS\ContactBundle\Entity\Contact</parameter>
-        <parameter key="ihqs_contact.manager.contact.class">Bundle\IHQS\ContactBundle\Entity\ContactManager</parameter>
+        <parameter key="ihqs_contact.model.contact.class">IHQS\ContactBundle\Entity\Contact</parameter>
+        <parameter key="ihqs_contact.manager.contact.class">IHQS\ContactBundle\Entity\ContactManager</parameter>
     </parameters>
 
     <services>
