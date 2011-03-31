@@ -31,7 +31,7 @@ class Provider
         return $this->container->get($this->connectorServiceIds[$name]);
     }
 
-    public function getConnectors($name)
+    public function getConnectors()
     {
         return $this->connectorServiceIds;
     }
