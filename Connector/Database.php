@@ -9,7 +9,7 @@
 
 namespace IHQS\ContactBundle\Connector;
 
-use Bundle\IHQS\ContactBundle\Model\ContactInterface;
+use IHQS\ContactBundle\Model\ContactInterface;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 

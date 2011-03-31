@@ -3,7 +3,7 @@
 namespace IHQS\ContactBundle\Entity;
 
 use Doctrine\ORM\DocumentManager;
-use Bundle\IHQS\ContactBundle\Manager\ContactManager as BaseContactManager;
+use IHQS\ContactBundle\Manager\ContactManager as BaseContactManager;
 
 class ContactManager extends BaseContactManager
 {

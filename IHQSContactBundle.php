@@ -9,7 +9,7 @@
 
 namespace IHQS\ContactBundle;
 
-use Bundle\IHQS\ContactBundle\DependencyInjection\Compiler\ConnectorPass;
+use IHQS\ContactBundle\DependencyInjection\Compiler\ConnectorPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle as BaseBundle;
 
