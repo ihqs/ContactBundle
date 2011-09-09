@@ -3,7 +3,7 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-        
+
     <parameters>
         <parameter key="ihqs_contact.model.contact.class">IHQS\ContactBundle\Document\Contact</parameter>
         <parameter key="ihqs_contact.manager.contact.class">IHQS\ContactBundle\Document\ContactManager</parameter>
@@ -14,7 +14,7 @@
         <service id="ihqs_contact.model_manager" alias="doctrine.odm.mongodb.entity_manager" />
 
         <!-- Managers -->
-        <service id="ihqs_contact.manager.contact" class="%ihqs_contact.manager.contact.class%">
+        <service id="ihqs_contact.contact_manager" class="%ihqs_contact.manager.contact.class%">
             <argument type="service" id="ihqs_contact.model_manager" />
             <argument>%ihqs_contact.model.contact.class%</argument>
             <call method="setContainer">

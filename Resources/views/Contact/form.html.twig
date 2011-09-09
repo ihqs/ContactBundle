@@ -1,21 +1,6 @@
 <form class="contact-form" action="" {{ form_enctype(form) }} method="post">
-    {{ form_errors(form) }}
-
-    <fieldset>
-        <legend>{% trans "Contact form" %} {{ message }}</legend>
-        {% for field in form %}
-            {% if not field.ishidden %}
-            <div>
-                {{ form_label(field) }}
-                {{ form_field(field) }}
-                {{ form_errors(field) }}
-            </div>
-            {% endif %}
-        {% endfor %}
-    </fieldset>
-
-    <fieldset>
-        {{ form_hidden(form) }}
-        <input type="submit" class="submit" value="{% trans "Submit contact form" %}" />
-    </fieldset>
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" class="submit" value="{% trans %}Submit contact form{% endtrans %}" />
+    </div>
 </form>

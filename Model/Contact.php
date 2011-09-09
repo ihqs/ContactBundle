@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Email;
 class Contact implements ContactInterface
 {
     protected $createdAt;
-    
+
     protected $senderEmail;
 
     protected $senderName;
@@ -24,6 +24,11 @@ class Contact implements ContactInterface
     protected $subject;
 
     protected $message;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getCreatedAt()
     {

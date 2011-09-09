@@ -6,6 +6,30 @@
 
     <parameters>
         <parameter key="ihqs_contact.form.contact.class">IHQS\ContactBundle\Form\ContactForm</parameter>
+        <parameter key="ihqs_contact.contact.form.name">ihqs_contact_contact_form</parameter>
     </parameters>
+
+    <services>
+
+        <service id="ihqs_contact.contact.form" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
+            <argument>%ihqs_contact.contact.form.type%</argument>
+            <argument>%ihqs_contact.contact.form.name%</argument>
+            <argument />
+        </service>
+
+        <service id="ihqs_contact.contact.form.type" class="IHQS\ContactBundle\Form\Type\ContactFormType">
+            <tag name="form.type" alias="ihqs_contact_contact" />
+            <argument>%ihqs_contact.model.contact.class%</argument>
+        </service>
+
+        <service id="ihqs_contact.contact.form.handler.default" class="IHQS\ContactBundle\Form\Handler\ContactFormHandler" scope="request" public="false">
+            <argument type="service" id="ihqs_contact.contact.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="ihqs_contact.contact_manager" />
+            <argument type="service" id="event_dispatcher" />
+        </service>
+
+    </services>
+
 
 </container>

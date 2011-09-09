@@ -18,10 +18,12 @@ class ContactManager extends BaseManager implements ContactManagerInterface
     {
         $this->class = $class;
     }
-    
+
     public function createContact()
     {
         $class = $this->getClass();
+
+        $contact = new $class();
         return new $class();
     }
 

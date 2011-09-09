@@ -20,6 +20,11 @@ class IHQSContactExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
+        $config = array();
+        foreach ($configs as $c) {
+            $config = array_merge($config, $c);
+        }
+
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
         $loader->load('form.xml');
         $loader->load('connector.xml');
@@ -29,6 +34,18 @@ class IHQSContactExtension extends Extension
         {
             $this->doConfigLoad($config_unit, $container);
         }
+
+        // load connector configs
+        foreach ($config['connectors'] as $connector => $attributes) {
+            $loader->load("connector_$connector.xml");
+        }
+
+        $container->setAlias('ihqs_contact.contact.form.handler', $config['contact']['form']['handler']);
+
+        $this->remapParametersNamespaces($config['contact'], $container, array(
+            'form' => 'ihqs_contact.contact.form.%s',
+        ));
+
 
     }
 
@@ -94,4 +111,35 @@ class IHQSContactExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
         $loader->load(sprintf('%s.xml', $config['db_driver']));
     }
+
+    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
+    {
+        foreach ($map as $name => $paramName) {
+            if (array_key_exists($name, $config)) {
+                $container->setParameter($paramName, $config[$name]);
+            }
+        }
+    }
+
+    protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
+    {
+        foreach ($namespaces as $ns => $map) {
+            if ($ns) {
+                if (!array_key_exists($ns, $config)) {
+                    continue;
+                }
+                $namespaceConfig = $config[$ns];
+            } else {
+                $namespaceConfig = $config;
+            }
+            if (is_array($map)) {
+                $this->remapParameters($namespaceConfig, $container, $map);
+            } else {
+                foreach ($namespaceConfig as $name => $value) {
+                    $container->setParameter(sprintf($map, $name), $value);
+                }
+            }
+        }
+    }
+
 }

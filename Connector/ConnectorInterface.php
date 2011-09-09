@@ -10,11 +10,14 @@
 namespace IHQS\ContactBundle\Connector;
 
 use IHQS\ContactBundle\Model\ContactInterface;
+use IHQS\ContactBundle\Event\ContactEvent;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 interface ConnectorInterface
 {
-    function register(EventDispatcher $dispatcher, $priority = 0);
-    
+    //function register(EventDispatcher $dispatcher, $priority = 0);
+
     function doProcess(ContactInterface $contact);
+
+    function onContactRequest(ContactEvent $contactEvent);
 }
