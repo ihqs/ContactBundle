@@ -14,7 +14,7 @@
         <service id="ihqs_contact.model_manager" alias="doctrine.orm.default_entity_manager" />
 
         <!-- Managers -->
-        <service id="ihqs_contact.manager.contact" class="%ihqs_contact.manager.contact.class%">
+        <service id="ihqs_contact.contact_manager" class="%ihqs_contact.manager.contact.class%">
             <argument type="service" id="ihqs_contact.model_manager" />
             <argument>%ihqs_contact.model.contact.class%</argument>
             <call method="setContainer">

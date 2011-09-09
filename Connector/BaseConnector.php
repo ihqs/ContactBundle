@@ -13,13 +13,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\EventDispatcher\Event;
 
+use IHQS\ContactBundle\Event\ContactEvent;
+
 abstract class BaseConnector implements ContainerAwareInterface
 {
     protected $container;
 
     public function __construct()
     {
-        
+
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -31,6 +33,12 @@ abstract class BaseConnector implements ContainerAwareInterface
     {
         $message = $event->getSubject();
         return $this->doProcess($message);
+    }
+
+    public function onContactRequest(ContactEvent $event)
+    {
+        $contactRequest = $event->getContact();
+        return $this->doProcess($contactRequest);
     }
 }
 
