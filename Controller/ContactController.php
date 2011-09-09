@@ -11,40 +11,29 @@ namespace IHQS\ContactBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use IHQS\ContactBundle\Event\Events;
+use IHQS\ContactBundle\Event\Event;
 
 class ContactController extends Controller
 {
     public function formAction()
     {
-        $message = '';
-        
-        $contactRequest = $this->get('ihqs_contact.manager.contact')->createContact();
+        $contact = $this->get('ihqs_contact.contact_manager')->createContact();
 
-        $formClass = $this->container->getParameter('ihqs_contact.form.contact.class');
-        $form = $formClass::create(
-            $this->get('form.context'),
-            'contact',
-            array('data_class' => $this->container->getParameter('ihqs_contact.model.contact.class'))
-        );
-        
-        $form->bind($this->get('request'), $contactRequest);
+        $form        = $this->get('ihqs_contact.contact.form');
+        $formHandler = $this->get('ihqs_contact.contact.form.handler');
 
-        if($form->isValid())
-        {
-            $event = new Event($contactRequest, 'form.contact_submission');
-            $this->get('event_dispatcher')->notify($event);
-
-            $message = 'Your contact request has been processed';
+        $process = $formHandler->process($contact);
+        if ($process) {
+            $this->get('session')->setFlash('notice', 'Your contact request was successfully sent');
         }
-        
+
         return $this->render(
             'IHQSContactBundle:Contact:form.html.twig',
             array(
-                'form'      => $form,
-                'message'   => $message
+                'form'      => $form->createview(),
             )
         );
     }

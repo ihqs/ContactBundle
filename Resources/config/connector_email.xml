@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="ihqs_contact.model.contact.class">IHQS\ContactBundle\Model\Contact</parameter>
-        <parameter key="ihqs_contact.manager.contact.class">IHQS\ContactBundle\Manager\ContactManager</parameter>
+        <parameter key="ihqs_contact.connectors.email.event_listener.class">IHQS\ContactBundle\Connector\Email</parameter>
     </parameters>
 
     <services>
-        <service id="ihqs_contact.contact_manager" class="%ihqs_contact.manager.contact.class%">
-            <argument>%ihqs_contact.model.contact.class%</argument>
+        <service id="ihqs_contact.connectors.email.event_listener" class="%ihqs_contact.connectors.email.event_listener.class%">
+            <tag name="kernel.event_listener" event="ihqs_contact.onContactRequest" method="onContactRequest" />
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

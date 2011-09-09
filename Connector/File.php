@@ -11,19 +11,13 @@ namespace IHQS\ContactBundle\Connector;
 
 use IHQS\ContactBundle\Model\ContactInterface;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class File extends BaseConnector implements ConnectorInterface
 {
-    public function register(EventDispatcher $dispatcher, $priority = 0)
-    {
-        $dispatcher->connect('form.contact_submission', array($this, 'process'));
-    }
-
     public function doProcess(ContactInterface $contact)
     {
-        $dir = $this->container->get('kernel.root_dir') . '/logs';
-        
+        $dir = $this->container->getParameter('kernel.root_dir') . '/logs';
+
         $line = array();
         array_push($line, $contact->getCreatedAt()->format('Y-m-d H:i:s'));
         array_push($line, $contact->getSenderEmail());

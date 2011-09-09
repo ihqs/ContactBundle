@@ -6,6 +6,7 @@ Plug any listener you want to your contact form's submission
  * Add mongodb configuration files
  * Add unit tests
  * Comment methods and attributes
+ * Cleanup
 
 (Quite the same as for GithubBundle, we are sorry for that methodology but we'll correct that soon).
 
@@ -19,10 +20,22 @@ Plug any listener you want to your contact form's submission
 # Installation
 
 ## Add ContactBundle to your src/ dir
+**Using submodules**
+If you prefer instead to use git submodules, the run the following:
 
 <pre>
     $ git submodule add git://github.com/ihqs/ContactBundle.git    src/IHQS/ContactBundle
 </pre>
+**Using the vendors script**
+
+Add the following lines in your `deps` file:
+
+```
+[IHQSContactBundle]
+    git=git://github.com/ihqs/ContactBundle.git
+    target=bundles/IHQS/ContactBundle
+```
+
 
 If you want to connect the email listener, install SwitfMailer and configure it
 
@@ -49,7 +62,7 @@ In your config, add :
 <pre>
     // app/autoload.php
     $loader->registerNamespaces(array(
-        'IHQS' => __DIR__,
+        'IHQS' => __DIR__.'/../vendor/bundles',
         // your other namespaces
     );
 </pre>
@@ -63,7 +76,7 @@ In your config, add :
     {
         return array(
             // ...
-            new IHQS\GithubBundle\IHQSContactBundle(),
+            new IHQS\ContactBundle\IHQSContactBundle(),
             // ...
         );
     }
@@ -90,6 +103,12 @@ In your app/config.yml (given you are using YAML for your configuration file)
 
 <pre>
     ihqs_contact.config:
+        contact:
+            form:
+                type:               ihqs_contact_contact
+                handler:            ihqs_contact.contact.form.handler.default
+                name:               ihqs_contact_contact_form
+                validation_groups:  [Contact]
         form: ~                                 # (optional) class managing the contact form
         model: ~                                # (optional) class managing the model
         connectors:                             # the list of "listeners" (or connectors here)
