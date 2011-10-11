@@ -84,7 +84,6 @@ abstract class BaseConnector implements ContainerAwareInterface
      */
     public function setSpamDetector($spamDetector)
     {
-        var_dump(get_class($spamDetector));
         $this->spamDetector = $spamDetector;
     }
 }

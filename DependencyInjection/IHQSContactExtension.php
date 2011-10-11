@@ -94,7 +94,6 @@ class IHQSContactExtension extends Extension
         }
         
         //add the spam detection
-        //add the spam detection
         if(isset($config['spam_detector']) && isset($config['spam_detector']['class']))
         {
             $container->setParameter('ihqs_contact.spam_detector.class', $config['spam_detector']['class']);
