@@ -14,6 +14,9 @@
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
+            <call method="setSpamDetector">
+                <argument type="service" id="ihqs_spam_detector" />
+            </call>
         </service>
     </services>
 

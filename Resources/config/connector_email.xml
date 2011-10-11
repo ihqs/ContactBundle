@@ -9,10 +9,13 @@
     </parameters>
 
     <services>
-        <service id="ihqs_contact.connectors.email.event_listener" class="%ihqs_contact.connectors.email.event_listener.class%">
+        <service id="ihqs_contact.connectors.email.event_listener" class="%ihqs_contact.connectors.email.event_listener.class%" scope="request">
             <tag name="kernel.event_listener" event="ihqs_contact.onContactRequest" method="onContactRequest" />
             <call method="setContainer">
                 <argument type="service" id="service_container" />
+            </call>
+            <call method="setSpamDetector">
+                <argument type="service" id="ihqs_spam_detector" />
             </call>
         </service>
     </services>
