@@ -26,6 +26,7 @@ class IHQSContactExtension extends Extension
         }
 
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
+        $loader->load('spam_detection.xml');
         $loader->load('form.xml');
         $loader->load('connector.xml');
         $loader->load('model.xml');
@@ -45,8 +46,6 @@ class IHQSContactExtension extends Extension
         $this->remapParametersNamespaces($config['contact'], $container, array(
             'form' => 'ihqs_contact.contact.form.%s',
         ));
-
-
     }
 
     public function doConfigLoad(array $config, ContainerBuilder $container)
@@ -92,6 +91,20 @@ class IHQSContactExtension extends Extension
         && isset($config['form']))
         {
             $container->setParameter('ihqs_contact.form.contact.class', $config['form']);
+        }
+        
+        //add the spam detection
+        if(isset($config['spam_detector']) && isset($config['spam_detector']['class']))
+        {
+            $container->setParameter('ihqs_contact.spam_detector.class', $config['spam_detector']['class']);
+        }
+        if(isset($config['spam_detector']) && isset($config['spam_detector']['service']))
+        {
+            $container->setAlias('ihqs_spam_detector', $config['spam_detector']['service']);        
+        }
+        else
+        {
+            $container->setAlias('ihqs_spam_detector', 'ihqs_contact.spam_detector.stub');
         }
     }
 
