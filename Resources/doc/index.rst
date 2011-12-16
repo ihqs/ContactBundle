@@ -111,6 +111,15 @@ add to your configuration file
             email:
                 recipients: cont@ct.me
 
+It you want to use a custom template/view instead of the default one (IHQSContactBundle:Contact:form.html.twig),
+you can add the view parameter with the name of your view. Example:
+
+	ihqs_contact:
+	    contact:
+	        form:
+				view:               CompanyExampleBundle:Contact:form.html.twig
+
+
 # Using Akismet for Spam Detection
 
 skip the step if you dont want to check for spam, by default no spam will be detected.

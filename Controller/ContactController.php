@@ -25,13 +25,16 @@ class ContactController extends Controller
         $form        = $this->get('ihqs_contact.contact.form');
         $formHandler = $this->get('ihqs_contact.contact.form.handler');
 
+        $formView = $this->container->getParameter('ihqs_contact.contact.form.view');
+        $formView = ($formView) ? $formView : 'IHQSContactBundle:Contact:form.html.twig';
+
         $process = $formHandler->process($contact);
         if ($process) {
             $this->get('session')->setFlash('notice', 'Your contact request was successfully sent');
         }
 
         return $this->render(
-            'IHQSContactBundle:Contact:form.html.twig',
+            $formView,
             array(
                 'form'      => $form->createview(),
             )

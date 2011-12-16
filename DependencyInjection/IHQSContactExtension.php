@@ -41,6 +41,15 @@ class IHQSContactExtension extends Extension
             $loader->load("connector_$connector.xml");
         }
 
+        if(isset($config['contact']['form']['view']))
+        {
+            $container->setParameter('ihqs_contact.contact.form.view', $config['contact']['form']['view']);
+        }
+        else
+        {
+            $container->setParameter('ihqs_contact.contact.form.view', NULL);
+        }
+
         $container->setAlias('ihqs_contact.contact.form.handler', $config['contact']['form']['handler']);
 
         $this->remapParametersNamespaces($config['contact'], $container, array(
