@@ -81,7 +81,13 @@ In your config, add :
 
 In your template, you just have to add (if you are using Twig)
 
-    {% render "IHQSContactBundle:Contact:form" %}
+    {% render "IHQSContactBundle:Contact:"~app.request.method with { 'msg': 'Thank you for your message!' }, { 'query': app.request.request.all } %}
+
+Since version 2.0.13 of Symfony you must send your form "POST" data using "query" parameter.
+That's because "render" tag is being processed as sub-request.
+And since that version all sub-requests are forced to use "GET" method
+therefore your embedded ContactController will loose all "POST" data if you miss it.
+Also you can specify your custom success message using "msg" parameter.
 
 # Configuration
 
