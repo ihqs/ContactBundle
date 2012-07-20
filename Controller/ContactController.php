@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ContactController extends Controller
 {
-    public function formAction($method = 'GET', $message = 'Message sent')
+    public function formAction($method = 'GET')
     {
         $contact = $this->get('ihqs_contact.contact_manager')->createContact();
 
@@ -27,12 +27,12 @@ class ContactController extends Controller
 
         if ($method == 'POST') {
             if ($formHandler->process($contact)) {
-                return new Response($message);
+                return new Response($this->get('translator')->trans('Message sent'));
             }
         }
 
         return $this->render($formView, array(
-                'form' => $form->createview(),
+                'form' => $form->createView(),
             )
         );
     }
