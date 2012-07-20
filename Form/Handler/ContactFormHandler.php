@@ -44,14 +44,12 @@ class ContactFormHandler
 
         $this->form->setData($contact);
 
-        if ('POST' == $this->request->getMethod()) {
-            $this->form->bindRequest($this->request);
+        $this->form->bindRequest($this->request);
 
-            if ($this->form->isValid()) {
-                $this->onSuccess($contact);
+        if ($this->form->isValid()) {
+            $this->onSuccess($contact);
 
-                return true;
-            }
+            return true;
         }
 
         return false;

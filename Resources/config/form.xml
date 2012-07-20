@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="ihqs_contact.form.contact.class">IHQS\ContactBundle\Form\ContactForm</parameter>
+        <parameter key="ihqs_contact.form.contact.class">IHQS\ContactBundle\Form\Type\ContactFormType</parameter>
         <parameter key="ihqs_contact.contact.form.name">ihqs_contact_contact_form</parameter>
     </parameters>
 
@@ -17,7 +17,7 @@
             <argument />
         </service>
 
-        <service id="ihqs_contact.contact.form.type" class="IHQS\ContactBundle\Form\Type\ContactFormType">
+        <service id="ihqs_contact.contact.form.type" class="%ihqs_contact.form.contact.class%">
             <tag name="form.type" alias="ihqs_contact_contact" />
             <argument>%ihqs_contact.model.contact.class%</argument>
         </service>

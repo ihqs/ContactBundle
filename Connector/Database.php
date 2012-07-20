@@ -15,11 +15,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Database extends BaseConnector implements ConnectorInterface
 {
-    public function register(EventDispatcher $dispatcher, $priority = 0)
-    {
-        $dispatcher->connect('form.contact_submission', array($this, 'process'));
-    }
-
     public function doProcess(ContactInterface $contact)
     {
         $manager = $this->container->get('ihqs_contact.model_manager');

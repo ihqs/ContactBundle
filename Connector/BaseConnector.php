@@ -10,24 +10,14 @@
 namespace IHQS\ContactBundle\Connector;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\Event;
 use IHQS\ContactBundle\Model\ContactInterface;
 use IHQS\ContactBundle\Event\ContactEvent;
 
-abstract class BaseConnector implements ContainerAwareInterface
+abstract class BaseConnector extends ContainerAware
 {
-    protected $container, $spamDetector;
-
-    /**
-     * inject the container
-     * 
-     * @param ContainerInterface $container 
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
+    protected $spamDetector;
 
     /**
      * delegates the event to the set connectors

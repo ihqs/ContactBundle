@@ -12,6 +12,7 @@ namespace IHQS\ContactBundle\Model;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\MaxLength;
 
 class Contact implements ContactInterface
 {
@@ -82,24 +83,5 @@ class Contact implements ContactInterface
     public function incrementCreatedAt()
     {
         $this->createdAt = new \DateTime();
-    }
-
-    static public function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('senderEmail', new NotBlank(array(
-            'message' => 'Please add an email address'
-        )));
-        $metadata->addPropertyConstraint('senderEmail', new Email(array(
-            'message' => 'Please add a valid email address'
-        )));
-        $metadata->addPropertyConstraint('senderName', new NotBlank(array(
-            'message' => 'Please add your name'
-        )));
-        $metadata->addPropertyConstraint('subject', new NotBlank(array(
-            'message' => 'Please add a subject for your message'
-        )));
-        $metadata->addPropertyConstraint('message', new NotBlank(array(
-            'message' => 'Please add a message'
-        )));
     }
 }

@@ -10,17 +10,10 @@
 namespace IHQS\ContactBundle\Manager;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-abstract class BaseManager implements ContainerAwareInterface
+abstract class BaseManager extends ContainerAware
 {
-    protected $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function getRepository()
     {
         return $this->repository;
