@@ -15,37 +15,25 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ContactController extends Controller
 {
-    public function getAction()
-    {
-        return $this->render($this->getFormView(), array(
-                'form' => $this->getForm()->createview(),
-            )
-        );
-    }
-
-    public function postAction($msg = 'Message sent')
+    public function formAction($method = 'GET', $message = 'Message sent')
     {
         $contact = $this->get('ihqs_contact.contact_manager')->createContact();
+
+        $form        = $this->get('ihqs_contact.contact.form');
         $formHandler = $this->get('ihqs_contact.contact.form.handler');
 
-        if ($formHandler->process($contact)) {
-            return new Response($msg);
+        $formView = $this->container->getParameter('ihqs_contact.contact.form.view');
+        $formView = ($formView) ? $formView : 'IHQSContactBundle:Contact:form.html.twig';
+
+        if ($method == 'POST') {
+            if ($formHandler->process($contact)) {
+                return new Response($message);
+            }
         }
 
-        return $this->render($this->getFormView(), array(
-                'form' => $this->getForm()->createview(),
+        return $this->render($formView, array(
+                'form' => $form->createview(),
             )
         );
-    }
-
-    private function getForm()
-    {
-        return $this->get('ihqs_contact.contact.form');
-    }
-
-    private function getFormView()
-    {
-        $formView = $this->container->getParameter('ihqs_contact.contact.form.view');
-        return ($formView) ? $formView : 'IHQSContactBundle:Contact:form.html.twig';
     }
 }
