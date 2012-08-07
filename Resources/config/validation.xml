@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="IHQS\ContactBundle\Model\Contact">
+
+        <property name="senderEmail">
+            <constraint name="NotBlank">
+                <option name="message">Please add an email address</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">2</option>
+                <option name="message">The email is too short</option>
+            </constraint>
+            <constraint name="MaxLength">
+                <option name="limit">255</option>
+                <option name="message">The email is too long</option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">Please add a valid email address</option>
+            </constraint>
+        </property>
+
+        <property name="senderName">
+            <constraint name="NotBlank">
+                <option name="message">Please add your name</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">2</option>
+                <option name="message">The username is too short</option>
+            </constraint>
+            <constraint name="MaxLength">
+                <option name="limit">255</option>
+                <option name="message">The username is too long</option>
+            </constraint>
+        </property>
+
+        <property name="subject">
+            <constraint name="NotBlank">
+                <option name="message">Please add a subject for your message</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">2</option>
+                <option name="message">The subject is too short</option>
+            </constraint>
+            <constraint name="MaxLength">
+                <option name="limit">255</option>
+                <option name="message">The subject is too long</option>
+            </constraint>
+        </property>
+
+        <property name="message">
+            <constraint name="NotBlank">
+                <option name="message">Please add a message</option>
+            </constraint>
+            <constraint name="MinLength">
+                <option name="limit">2</option>
+                <option name="message">The message is too short</option>
+            </constraint>
+            <constraint name="MaxLength">
+                <option name="limit">255</option>
+                <option name="message">The message is too long</option>
+            </constraint>
+        </property>
+
+    </class>
+
+</constraint-mapping>

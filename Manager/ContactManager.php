@@ -23,7 +23,6 @@ class ContactManager extends BaseManager implements ContactManagerInterface
     {
         $class = $this->getClass();
 
-        $contact = new $class();
         return new $class();
     }
 

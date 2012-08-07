@@ -28,7 +28,6 @@ class IHQSContactExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(array(__DIR__.'/../Resources/config')));
         $loader->load('spam_detection.xml');
         $loader->load('form.xml');
-        $loader->load('connector.xml');
         $loader->load('model.xml');
 
         foreach($configs as $config_unit)
@@ -72,13 +71,6 @@ class IHQSContactExtension extends Extension
             {
                 // TODO
                 continue;
-            }
-
-            // built-in connectors
-            $service_id = 'ihqs_contact.connector.' . $connector;
-            if($container->has($service_id))
-            {
-                $container->getDefinition($service_id)->addTag('ihqs_contact.connector', array('alias' => $connector));
             }
 
             // built-in connector configuration

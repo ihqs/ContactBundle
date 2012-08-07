@@ -13,12 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-use IHQS\ContactBundle\Event\Events;
-use IHQS\ContactBundle\Event\Event;
-
 class ContactController extends Controller
 {
-    public function formAction()
+    public function formAction($method = 'GET')
     {
         $contact = $this->get('ihqs_contact.contact_manager')->createContact();
 
@@ -28,15 +25,14 @@ class ContactController extends Controller
         $formView = $this->container->getParameter('ihqs_contact.contact.form.view');
         $formView = ($formView) ? $formView : 'IHQSContactBundle:Contact:form.html.twig';
 
-        $process = $formHandler->process($contact);
-        if ($process) {
-            $this->get('session')->setFlash('notice', 'Your contact request was successfully sent');
+        if ($method == 'POST') {
+            if ($formHandler->process($contact)) {
+                return new Response($this->get('translator')->trans('Message sent'));
+            }
         }
 
-        return $this->render(
-            $formView,
-            array(
-                'form'      => $form->createview(),
+        return $this->render($formView, array(
+                'form' => $form->createView(),
             )
         );
     }
