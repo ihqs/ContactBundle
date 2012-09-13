@@ -12,9 +12,9 @@
     <services>
 
         <service id="ihqs_contact.contact.form" factory-method="createNamed" factory-service="form.factory" class="Symfony\Component\Form\Form">
-            <argument>%ihqs_contact.contact.form.type%</argument>
             <argument>%ihqs_contact.contact.form.name%</argument>
-            <argument />
+            <argument>%ihqs_contact.contact.form.type%</argument>
+            <argument>null</argument>
         </service>
 
         <service id="ihqs_contact.contact.form.type" class="%ihqs_contact.form.contact.class%">
